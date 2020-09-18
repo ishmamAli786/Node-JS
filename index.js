@@ -1,16 +1,23 @@
-/// the http.createserver() method include request and response parameter which is supplied by nodejs
-///the request object can be used to get information about the cureent http request e.g url request header
-///and data
-///the response object can be used to send a resposne for a current 
-
-
-
-
-
-const http=require('http');
-const server=http.createServer((req,res)=>{
-    res.end('hello from the others side');
-});
-server.listen(8000,'127.0.0.1',()=>{
-    console.log('listing the port number 8000')
-});
+const bioData={
+    name: "ishmam",
+    age:26
+}
+console.log(bioData.age)
+// 1.convert into json
+const jsonData= JSON.stringify(bioData);
+// const objData=JSON.parse(jsonData);
+// console.log(objData)
+// 2.add into other file
+const fs=require('fs');
+fs.writeFile('json1.json',jsonData,(err)=>{
+    console.log(err);
+    console.log('done');
+})
+// 3.read file
+fs.readFile('json1.json',"utf-8",(err,data)=>{
+    console.log(err);
+    console.log(data)
+})
+// 4.convert back to object
+const objData=JSON.parse(jsonData);
+console.log(objData)
